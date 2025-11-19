@@ -1,289 +1,434 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width,initial-scale=1" />
-    <title>Dufa Alwan Farras — Portfolio</title>
-    <meta name="description" content="Dufa Alwan Farras — Mathematics student focusing on computational modeling and data analysis" />
-    <!-- Tailwind CDN -->
-    <script src="https://cdn.tailwindcss.com"></script>
-    <style>
-        /* Extra small utilities */
-        :root{
-            --accent: #60a5fa; /* blue-400 */
-            --glass: rgba(255,255,255,0.06);
-        }
-        html {
-            scroll-behavior: smooth;
-        }
-        .typing > .cursor {
-            display:inline-block;
-            margin-left:6px;
-            width:2px;
-            background:var(--accent);
-            animation: blink 1s steps(2,start) infinite;
-        }
-        @keyframes blink {
-            50%{ opacity: 0 }
-        }
-        /* Simple fade-in reveal */
-        .reveal {
-            opacity:0;
-            transform: translateY(12px);
-            transition: all 600ms cubic-bezier(.2,.9,.2,1);
-        }
-        .reveal.show {
-            opacity:1;
-            transform: translateY(0);
-        }
-        /* tilt effect on project card */
-        .tilt {
-            transform-style: preserve-3d;
-            transition: transform 150ms ease;
-            will-change: transform;
-        }
-        /* skill bar animation */
-        .skill-fill {
-            height: 8px;
-            border-radius: 999px;
-            transform-origin: left;
-            transform: scaleX(0);
-            transition: transform 900ms cubic-bezier(.2,.9,.2,1);
-        }
-        /* light mode tweaks */
-        :root.light {
-            --bg: #f8fafc;
-            --text: #111827;
-            --muted: #374151;
-            --card: #ffffff;
-            --glass: rgba(0,0,0,0.03);
-        }
-        :root {
-            --bg: #0b1220;
-            --text:#e6eef8;
-            --muted:#94a3b8;
-            --card:#0f1724;
-        }
-        body {
-            background: radial-gradient(1200px 600px at 10% 10%, rgba(96,165,250,0.04), transparent), var(--bg);
-            color:var(--text);
-        }
-        .glass {
-            background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
-            backdrop-filter: blur(6px);
-            border: 1px solid rgba(255,255,255,0.04);
-        }
-        /* small helper for profile placeholder circle */
-        .profile-placeholder {
-            background: linear-gradient(135deg,#0ea5e9,#7c3aed);
-            width:140px;
-            height:140px;
-            border-radius:999px;
-            display:flex;
-            align-items:center;
-            justify-content:center;
-            font-weight:700;
-            font-size:30px;
-            color:white;
-            box-shadow: 0 10px 30px rgba(2,6,23,0.6), 0 2px 6px rgba(96,165,250,0.08) inset;
-        }
-        /* navbar hide on scroll */
-        .nav-hidden {
-            transform: translateY(-120%);
-            transition: transform 300ms ease;
-        }
-        /* small responsive */
-        @media (max-width:640px){
-            .profile-placeholder{width:110px;height:110px;font-size:22px}
-        }
-    </style>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Dufa Alwan Farras — Portfolio</title>
+  <meta name="description" content="Dufa Alwan Farras — Mathematics student focusing on computational modeling and data analysis" />
+  <!-- Tailwind CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    /* Extra small utilities */
+    :root{
+      --accent: #60a5fa; /* blue-400 */
+      --glass: rgba(255,255,255,0.06);
+    }
+    html { scroll-behavior: smooth; }
+    .typing > .cursor { display:inline-block; margin-left:6px; width:2px; background:var(--accent); animation: blink 1s steps(2,start) infinite; }
+    @keyframes blink { 50%{ opacity: 0 } }
+    /* Simple fade-in reveal */
+    .reveal { opacity:0; transform: translateY(12px); transition: all 600ms cubic-bezier(.2,.9,.2,1); }
+    .reveal.show { opacity:1; transform: translateY(0); }
+    /* tilt effect on project card */
+    .tilt { transform-style: preserve-3d; transition: transform 150ms ease; will-change: transform; }
+    /* skill bar animation */
+    .skill-fill { height: 8px; border-radius: 999px; transform-origin: left; transform: scaleX(0); transition: transform 900ms cubic-bezier(.2,.9,.2,1); }
+    /* light mode tweaks */
+    :root.light { --bg: #f8fafc; --text: #111827; --muted: #374151; --card: #ffffff; --glass: rgba(0,0,0,0.03); }
+    :root { --bg: #0b1220; --text:#e6eef8; --muted:#94a3b8; --card:#0f1724; }
+    body { background: radial-gradient(1200px 600px at 10% 10%, rgba(96,165,250,0.04), transparent), var(--bg); color:var(--text); }
+    .glass { background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01)); backdrop-filter: blur(6px); border: 1px solid rgba(255,255,255,0.04); }
+    /* small helper for profile placeholder circle */
+    .profile-placeholder { background: linear-gradient(135deg,#0ea5e9,#7c3aed); width:140px; height:140px; border-radius:999px; display:flex; align-items:center; justify-content:center; font-weight:700; font-size:30px; color:white; box-shadow: 0 10px 30px rgba(2,6,23,0.6), 0 2px 6px rgba(96,165,250,0.08) inset; }
+    /* navbar hide on scroll */
+    .nav-hidden { transform: translateY(-120%); transition: transform 300ms ease; }
+    /* small responsive */
+    @media (max-width:640px){ .profile-placeholder{width:110px;height:110px;font-size:22px} }
+  </style>
 </head>
 <body class="antialiased">
-    <!-- NAVBAR -->
-    <header id="site-header" class="fixed w-full z-50 top-2 left-0 px-4">
-        <div class="max-w-5xl mx-auto flex items-center justify-between p-3 rounded-2xl glass shadow-md">
-            <div class="flex items-center gap-3">
-                <div class="w-10 h-10 rounded-full bg-gradient-to-br from-sky-400 to-indigo-600 flex items-center justify-center font-bold">DAF</div>
-                <div>
-                    <div class="text-sm font-semibold">Dufa Alwan Farras</div>
-                    <div class="text-xs text-slate-300">Mathematics · Modeling · Data</div>
-                </div>
-            </div>
-            <nav class="hidden md:flex items-center gap-6 text-sm text-slate-200">
-                <a href="#about" class="hover:text-white">About</a>
-                <a href="#projects" class="hover:text-white">Projects</a>
-                <a href="#skills" class="hover:text-white">Skills</a>
-                <a href="#contact" class="hover:text-white">Contact</a>
-            </nav>
-            <div class="flex items-center gap-3">
-                <!-- theme toggle -->
-                <button id="themeToggle" aria-label="Toggle theme" class="p-2 rounded-lg glass">
-                    <svg id="iconMoon" class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M20.354 15.354A9 9 0 118.646 3.646 7 7 0 0020.354 15.354z"/></svg>
-                </button>
-                <!-- compact social icons -->
-                <a href="https://github.com/all-for-wan" target="_blank" class="p-2 rounded-lg glass" aria-label="GitHub">
-                    <svg class="w-5 h-5" viewBox="0 0 24 24" fill="currentColor"><path d="M12 .5a12 12 0 00-3.8 23.4c.6.1.8-.3.8-.6v-2.2c-3.3.7-4-1.4-4-1.4-.5-1.2-1.2-1.6-1.2-1.6-1-.7.1-.7.1-.7 1.1.1 1.7 1.2 1.7 1.2 1 .1 1.6-.8 1.8-1.3.1-.4.4-1 .7-1.3-2.7-.3-5.5-1.4-5.5-6.1 0-1.4.5-2.5 1.2-3.4-.1-.3-.5-1.7.1-3.5 0 0 1-.3 3.3 1.2a11 11 0 016 0c2.3-1.5 3.3-1.2 3.3-1.2.6 1.8.2 3.2.1 3.5.8.9 1.2 2 1.2 3.4 0 4.7-2.8 5.8-5.5 6.1.4.4.8 1 .8 2v3c0 .3.2.7.8.6A12 12 0 0012 .5z"></path></svg>
-                </a>
-            </div>
+
+  <!-- NAVBAR -->
+  <header id="site-header" class="fixed w-full z-50 top-2 left-0 px-4">
+    <div class="max-w-5xl mx-auto flex items-center justify-between p-3 rounded-2xl glass shadow-md">
+      <div class="flex items-center gap-3">
+        <div class="w-10 h-10 rounded-full bg-gradient-to-br from-sky-400 to-indigo-600 flex items-center justify-center font-bold">DAF</div>
+        <div>
+          <div class="text-sm font-semibold">Dufa Alwan Farras</div>
+          <div class="text-xs text-slate-300">Mathematics · Modeling · Data</div>
         </div>
-    </header>
-    <!-- HERO -->
-    <main class="pt-28">
-        <section class="min-h-screen flex items-center">
-            <div class="max-w-5xl mx-auto px-6 grid md:grid-cols-2 gap-8 items-center">
-                <div class="space-y-6">
-                    <h1 class="text-4xl md:text-6xl font-extrabold leading-tight">
-                        Hi, I'm <span class="text-sky-400">Dufa Alwan Farras</span>
-                    </h1>
-                    <p class="text-lg text-slate-300 max-w-2xl">
-                        <span class="typing" id="typingText">Mathematics student focusing on computational modeling and data analysis</span><span class="cursor" id="typingCursor"></span>
-                    </p>
-                    <div class="flex gap-3 items-center">
-                        <a href="#projects" class="inline-flex items-center gap-3 bg-sky-500 hover:bg-sky-600 px-5 py-3 rounded-full text-white shadow-lg">
-                            View Projects
-                        </a>
-                        <a href="./CV_Dufa_Alwan_Farras.pdf" id="downloadCv" class="inline-flex items-center gap-2 px-4 py-3 rounded-full border border-slate-700 hover:bg-slate-800">
-                            Download CV
-                        </a>
-                    </div>
-                    <div class="flex items-center gap-4 text-slate-300">
-                        <a href="https://instagram.com/dufaaa_" target="_blank" class="hover:text-white">IG: @dufaaa_</a>
-                        <span>·</span>
-                        <a href="https://www.linkedin.com/in/dufa-alwan-farras-b67447278/" target="_blank" class="hover:text-white">LinkedIn</a>
-                        <span>·</span>
-                        <a href="mailto:dufaalwan@gmail.com" class="hover:text-white">dufaalwan@gmail.com</a>
-                    </div>
-                </div>
-                <!-- profile / placeholder -->
-                <div class="flex justify-center md:justify-end">
-                    <!-- Replace src with your photo file (e.g. "profile.jpg") in repo root -->
-                    <!-- If you don't have a photo yet, this placeholder will show initials -->
-                    <div id="profileWrap" class="relative">
-                        <div id="profilePic" class="profile-placeholder shadow-2xl">
-                            <!-- Initials shown by default -->
-                            DA
-                        </div>
-                        <div class="absolute -bottom-6 right-0">
-                            <div class="glass px-3 py-2 rounded-full text-sm text-slate-300">Data · Modeling · Cryptography</div>
-                        </div>
-                    </div>
-                </div>
+      </div>
+
+      <nav class="hidden md:flex items-center gap-6 text-sm text-slate-200">
+        <a href="#about" class="hover:text-white">About</a>
+        <a href="#projects" class="hover:text-white">Projects</a>
+        <a href="#skills" class="hover:text-white">Skills</a>
+        <a href="#contact" class="hover:text-white">Contact</a>
+      </nav>
+
+      <div class="flex items-center gap-3">
+        <!-- theme toggle -->
+        <button id="themeToggle" aria-label="Toggle theme" class="p-2 rounded-lg glass">
+          <svg id="iconMoon" class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M20.354 15.354A9 9 0 118.646 3.646 7 7 0 0020.354 15.354z"/></svg>
+        </button>
+        <!-- compact social icons -->
+        <a href="https://github.com/all-for-wan" target="_blank" class="p-2 rounded-lg glass" aria-label="GitHub">
+          <svg class="w-5 h-5" viewBox="0 0 24 24" fill="currentColor"><path d="M12 .5a12 12 0 00-3.8 23.4c.6.1.8-.3.8-.6v-2.2c-3.3.7-4-1.4-4-1.4-.5-1.2-1.2-1.6-1.2-1.6-1-.7.1-.7.1-.7 1.1.1 1.7 1.2 1.7 1.2 1 .1 1.6-.8 1.8-1.3.1-.4.4-1 .7-1.3-2.7-.3-5.5-1.4-5.5-6.1 0-1.4.5-2.5 1.2-3.4-.1-.3-.5-1.7.1-3.5 0 0 1-.3 3.3 1.2a11 11 0 016 0c2.3-1.5 3.3-1.2 3.3-1.2.6 1.8.2 3.2.1 3.5.8.9 1.2 2 1.2 3.4 0 4.7-2.8 5.8-5.5 6.1.4.4.8 1 .8 2v3c0 .3.2.7.8.6A12 12 0 0012 .5z"></path></svg>
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <!-- HERO -->
+  <main class="pt-28">
+    <section class="min-h-screen flex items-center">
+      <div class="max-w-5xl mx-auto px-6 grid md:grid-cols-2 gap-8 items-center">
+        <div class="space-y-6">
+          <h1 class="text-4xl md:text-6xl font-extrabold leading-tight">
+            Hi, I'm <span class="text-sky-400">Dufa Alwan Farras</span>
+          </h1>
+          <p class="text-lg text-slate-300 max-w-2xl">
+            <span class="typing" id="typingText">Mathematics student focusing on computational modeling and data analysis</span><span class="cursor" id="typingCursor"></span>
+          </p>
+
+          <div class="flex gap-3 items-center">
+            <a href="#projects" class="inline-flex items-center gap-3 bg-sky-500 hover:bg-sky-600 px-5 py-3 rounded-full text-white shadow-lg">
+              View Projects
+            </a>
+            <a href="./CV_Dufa_Alwan_Farras.pdf" id="downloadCv" class="inline-flex items-center gap-2 px-4 py-3 rounded-full border border-slate-700 hover:bg-slate-800">
+              Download CV
+            </a>
+          </div>
+
+          <div class="flex items-center gap-4 text-slate-300">
+            <a href="https://instagram.com/dufaaa_" target="_blank" class="hover:text-white">IG: @dufaaa_</a>
+            <span>·</span>
+            <a href="https://www.linkedin.com/in/dufa-alwan-farras-b67447278/" target="_blank" class="hover:text-white">LinkedIn</a>
+            <span>·</span>
+            <a href="mailto:dufaalwan@gmail.com" class="hover:text-white">dufaalwan@gmail.com</a>
+          </div>
+        </div>
+
+        <!-- profile / placeholder -->
+        <div class="flex justify-center md:justify-end">
+          <!-- Replace src with your photo file (e.g. "profile.jpg") in repo root -->
+          <!-- If you don't have a photo yet, this placeholder will show initials -->
+          <div id="profileWrap" class="relative">
+            <div id="profilePic" class="profile-placeholder shadow-2xl">
+              <!-- Initials shown by default -->
+              DA
             </div>
-        </section>
-        <!-- ABOUT -->
-        <section id="about" class="py-20">
-            <div class="max-w-5xl mx-auto px-6">
-                <div class="grid md:grid-cols-3 gap-8 items-start">
-                    <div class="md:col-span-2 reveal" data-reveal>
-                        <h2 class="text-2xl font-bold mb-4">About Me</h2>
-                        <p class="text-slate-300 leading-relaxed mb-4">
-                            Saya seorang mahasiswa yang menempuh program studi matematika. Saya fokus sebagai data analyst dan tertarik pada riset kriptografi terutama enkripsi data. Keahlian utama saya adalah coding dan pemecahan masalah komputasi.
-                        </p>
-                        <p class="text-slate-400 mb-4">
-                            Saya mengerjakan proyek terkait pemodelan numerik, analisis data, serta eksperimen machine learning dasar. Saya terbiasa memakai Python, LaTeX, serta alat data science dasar.
-                        </p>
-                        <div class="flex gap-3 mt-4">
-                            <a class="px-4 py-2 rounded-lg border border-slate-700 glass" href="#projects">See projects</a>
-                            <a class="px-4 py-2 rounded-lg bg-sky-600 hover:bg-sky-700 text-white" href="mailto:dufaalwan@gmail.com">Contact me</a>
-                        </div>
-                    </div>
-                    <aside class="glass p-4 rounded-2xl">
-                        <h3 class="text-sm text-slate-300 font-semibold">Quick facts</h3>
-                        <ul class="mt-3 text-slate-300 space-y-2 text-sm">
-                            <li><strong>Study</strong> — Mathematics</li>
-                            <li><strong>Focus</strong> — Data Analysis</li>
-                            <li><strong>Interest</strong> — Cryptography (data encryption)</li>
-                            <li><strong>Location</strong> — Indonesia</li>
-                        </ul>
-                    </aside>
-                </div>
+            <div class="absolute -bottom-6 right-0">
+              <div class="glass px-3 py-2 rounded-full text-sm text-slate-300">Data · Modeling · Cryptography</div>
             </div>
-        </section>
-        <!-- PROJECTS -->
-        <section id="projects" class="py-20 bg-gradient-to-b from-transparent to-black/20">
-            <div class="max-w-5xl mx-auto px-6">
-                <div class="flex items-center justify-between mb-8">
-                    <h2 class="text-2xl font-bold">Projects</h2>
-                </div>
-                <div class="grid md:grid-cols-3 gap-6">
-                    <!-- PROJECT PLACEHOLDER 1 -->
-                    <article class="tilt p-5 rounded-2xl glass transform transition-shadow hover:shadow-2xl" tabindex="0">
-                        <div class="flex items-start justify-between">
-                            <h3 class="font-semibold text-sky-400">Project Placeholder</h3>
-                            <span class="text-xs text-slate-300">Tag: Research</span>
-                        </div>
-                        <p class="text-slate-300 mt-3 text-sm">Belum ada daftar project.</p>
-                        <div class="mt-4 flex gap-2">
-                            <a class="px-3 py-2 rounded-full border text-sm" href="#" target="_blank">View</a>
-                            <a class="px-3 py-2 rounded-full border text-sm" href="#" target="_blank">Code</a>
-                        </div>
-                    </article>
-                    <!-- PROJECT PLACEHOLDER 2 -->
-                    <article class="tilt p-5 rounded-2xl glass transform transition-shadow hover:shadow-2xl" tabindex="0">
-                        <div class="flex items-start justify-between">
-                            <h3 class="font-semibold text-sky-400">WLS Implementation</h3>
-                            <span class="text-xs text-slate-300">Python</span>
-                        </div>
-                        <p class="text-slate-300 mt-3 text-sm">Implementasi Weighted Least Squares untuk kasus diskrit/kontinu.</p>
-                        <div class="mt-4 flex gap-2">
-                            <a class="px-3 py-2 rounded-full border text-sm" href="#" target="_blank">View</a>
-                            <a class="px-3 py-2 rounded-full border text-sm" href="#" target="_blank">Code</a>
-                        </div>
-                    </article>
-                    <!-- PROJECT PLACEHOLDER 3 -->
-                    <article class="tilt p-5 rounded-2xl glass transform transition-shadow hover:shadow-2xl" tabindex="0">
-                        <div class="flex items-start justify-between">
-                            <h3 class="font-semibold text-sky-400">Data Analysis Template</h3>
-                            <span class="text-xs text-slate-300">Python</span>
-                        </div>
-                        <p class="text-slate-300 mt-3 text-sm">Template analisis data untuk klasifikasi, visualisasi, dan laporan singkat.</p>
-                        <div class="mt-4 flex gap-2">
-                            <a class="px-3 py-2 rounded-full border text-sm" href="#" target="_blank">View</a>
-                            <a class="px-3 py-2 rounded-full border text-sm" href="#" target="_blank">Code</a>
-                        </div>
-                    </article>
-                </div>
-                <div class="mt-8 text-center">
-                    <a href="#contact" class="px-6 py-3 rounded-full bg-sky-600 hover:bg-sky-700 text-white">Get in touch to collaborate</a>
-                </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ABOUT -->
+    <section id="about" class="py-20">
+      <div class="max-w-5xl mx-auto px-6">
+        <div class="grid md:grid-cols-3 gap-8 items-start">
+          <div class="md:col-span-2 reveal" data-reveal>
+            <h2 class="text-2xl font-bold mb-4">About Me</h2>
+            <p class="text-slate-300 leading-relaxed mb-4">
+              Saya seorang mahasiswa yang menempuh program studi matematika. Saya fokus sebagai data analyst dan tertarik pada riset kriptografi terutama enkripsi data. Keahlian utama saya adalah coding dan pemecahan masalah komputasi.
+            </p>
+            <p class="text-slate-400 mb-4">
+              Saya mengerjakan proyek terkait pemodelan numerik, analisis data, serta eksperimen machine learning dasar. Saya terbiasa memakai Python, LaTeX, serta alat data science dasar.
+            </p>
+            <div class="flex gap-3 mt-4">
+              <a class="px-4 py-2 rounded-lg border border-slate-700 glass" href="#projects">See projects</a>
+              <a class="px-4 py-2 rounded-lg bg-sky-600 hover:bg-sky-700 text-white" href="mailto:dufaalwan@gmail.com">Contact me</a>
             </div>
-        </section>
-        <!-- SKILLS -->
-        <section id="skills" class="py-20">
-            <div class="max-w-5xl mx-auto px-6">
-                <h2 class="text-2xl font-bold mb-6">Skills</h2>
-                <div class="grid md:grid-cols-2 gap-6">
-                    <div class="p-6 rounded-2xl glass">
-                        <h3 class="font-semibold mb-3">Programming & Tools</h3>
-                        <ul class="space-y-4">
-                            <!-- each skill shows a bar, percentage is visual only -->
-                            <li>
-                                <div class="flex justify-between text-sm text-slate-300"><span>Python</span><span>85%</span></div>
-                                <div class="w-full mt-2 bg-slate-700 rounded-xl h-2 overflow-hidden"><div class="skill-fill bg-sky-400" data-fill="0.85"></div></div>
-                            </li>
-                            <li>
-                                <div class="flex justify-between text-sm text-slate-300"><span>HTML / CSS</span><span>70%</span></div>
-                                <div class="w-full mt-2 bg-slate-700 rounded-xl h-2 overflow-hidden"><div class="skill-fill bg-indigo-400" data-fill="0.7"></div></div>
-                            </li>
-                            <li>
-                                <div class="flex justify-between text-sm text-slate-300"><span>LaTeX</span><span>75%</span></div>
-                                <div class="w-full mt-2 bg-slate-700 rounded-xl h-2 overflow-hidden"><div class="skill-fill bg-emerald-400" data-fill="0.75"></div></div>
-                            </li>
-                            <li>
-                                <div class="flex justify-between text-sm text-slate-300"><span>Excel</span><span>65%</span></div>
-                                <div class="w-full mt-2 bg-slate-700 rounded-xl h-2 overflow-hidden"><div class="skill-fill bg-yellow-400" data-fill="0.65"></div></div>
-                            </li>
-                        </ul>
-                    </div>
-                    <div class="p-6 rounded-2xl glass">
-                        <h3 class="font-semibold mb-3">Fields</h3>
-                        <ul class="space-y-4">
-                            <li>
-                                <div class="flex justify-between text-sm text-slate-300"><span>Numerical Analysis</span><span>80%</span></div>
-                                <div class="w-full mt-2 bg-slate-700 rounded-xl h-2 overflow-hidden"><div class="skill-fill bg-pink-400" data-fill="0.8"></div></div>
-                            </li>
-                            <li>
-                                <div class="flex justify-between text-sm text-slate-300"><span>Data Analysis</span><span>78%</span></div>
-                                <div class="w-full mt-2 bg-slate-700 rounded-xl h-2 overflow-hidden"><div class="skill-fill bg-sky-400" data-fill="0.78"></div></div>
-                            </li>
-                            <li>
+          </div>
+
+          <aside class="glass p-4 rounded-2xl">
+            <h3 class="text-sm text-slate-300 font-semibold">Quick facts</h3>
+            <ul class="mt-3 text-slate-300 space-y-2 text-sm">
+              <li><strong>Study</strong> — Mathematics</li>
+              <li><strong>Focus</strong> — Data Analysis</li>
+              <li><strong>Interest</strong> — Cryptography (data encryption)</li>
+              <li><strong>Location</strong> — Indonesia</li>
+            </ul>
+          </aside>
+        </div>
+      </div>
+    </section>
+
+    <!-- PROJECTS -->
+    <section id="projects" class="py-20 bg-gradient-to-b from-transparent to-black/20">
+      <div class="max-w-5xl mx-auto px-6">
+        <div class="flex items-center justify-between mb-8">
+          <h2 class="text-2xl font-bold">Projects</h2>
+        </div>
+
+        <div class="grid md:grid-cols-3 gap-6">
+          <!-- PROJECT PLACEHOLDER 1 -->
+          <article class="tilt p-5 rounded-2xl glass transform transition-shadow hover:shadow-2xl" tabindex="0">
+            <div class="flex items-start justify-between">
+              <h3 class="font-semibold text-sky-400">Project Placeholder</h3>
+              <span class="text-xs text-slate-300">Tag: Research</span>
+            </div>
+            <p class="text-slate-300 mt-3 text-sm">Belum ada daftar project.</p>
+            <div class="mt-4 flex gap-2">
+              <a class="px-3 py-2 rounded-full border text-sm" href="#" target="_blank">View</a>
+              <a class="px-3 py-2 rounded-full border text-sm" href="#" target="_blank">Code</a>
+            </div>
+          </article>
+
+          <!-- PROJECT PLACEHOLDER 2 -->
+          <article class="tilt p-5 rounded-2xl glass transform transition-shadow hover:shadow-2xl" tabindex="0">
+            <div class="flex items-start justify-between">
+              <h3 class="font-semibold text-sky-400">WLS Implementation</h3>
+              <span class="text-xs text-slate-300">Python</span>
+            </div>
+            <p class="text-slate-300 mt-3 text-sm">Implementasi Weighted Least Squares untuk kasus diskrit/kontinu.</p>
+            <div class="mt-4 flex gap-2">
+              <a class="px-3 py-2 rounded-full border text-sm" href="#" target="_blank">View</a>
+              <a class="px-3 py-2 rounded-full border text-sm" href="#" target="_blank">Code</a>
+            </div>
+          </article>
+
+          <!-- PROJECT PLACEHOLDER 3 -->
+          <article class="tilt p-5 rounded-2xl glass transform transition-shadow hover:shadow-2xl" tabindex="0">
+            <div class="flex items-start justify-between">
+              <h3 class="font-semibold text-sky-400">Data Analysis Template</h3>
+              <span class="text-xs text-slate-300">Python</span>
+            </div>
+            <p class="text-slate-300 mt-3 text-sm">Template analisis data untuk klasifikasi, visualisasi, dan laporan singkat.</p>
+            <div class="mt-4 flex gap-2">
+              <a class="px-3 py-2 rounded-full border text-sm" href="#" target="_blank">View</a>
+              <a class="px-3 py-2 rounded-full border text-sm" href="#" target="_blank">Code</a>
+            </div>
+          </article>
+        </div>
+
+        <div class="mt-8 text-center">
+          <a href="#contact" class="px-6 py-3 rounded-full bg-sky-600 hover:bg-sky-700 text-white">Get in touch to collaborate</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- SKILLS -->
+    <section id="skills" class="py-20">
+      <div class="max-w-5xl mx-auto px-6">
+        <h2 class="text-2xl font-bold mb-6">Skills</h2>
+        <div class="grid md:grid-cols-2 gap-6">
+          <div class="p-6 rounded-2xl glass">
+            <h3 class="font-semibold mb-3">Programming & Tools</h3>
+            <ul class="space-y-4">
+              <!-- each skill shows a bar, percentage is visual only -->
+              <li>
+                <div class="flex justify-between text-sm text-slate-300"><span>Python</span><span>85%</span></div>
+                <div class="w-full mt-2 bg-slate-700 rounded-xl h-2 overflow-hidden"><div class="skill-fill bg-sky-400" data-fill="0.85"></div></div>
+              </li>
+              <li>
+                <div class="flex justify-between text-sm text-slate-300"><span>HTML / CSS</span><span>70%</span></div>
+                <div class="w-full mt-2 bg-slate-700 rounded-xl h-2 overflow-hidden"><div class="skill-fill bg-indigo-400" data-fill="0.7"></div></div>
+              </li>
+              <li>
+                <div class="flex justify-between text-sm text-slate-300"><span>LaTeX</span><span>75%</span></div>
+                <div class="w-full mt-2 bg-slate-700 rounded-xl h-2 overflow-hidden"><div class="skill-fill bg-emerald-400" data-fill="0.75"></div></div>
+              </li>
+              <li>
+                <div class="flex justify-between text-sm text-slate-300"><span>Excel</span><span>65%</span></div>
+                <div class="w-full mt-2 bg-slate-700 rounded-xl h-2 overflow-hidden"><div class="skill-fill bg-yellow-400" data-fill="0.65"></div></div>
+              </li>
+            </ul>
+          </div>
+
+          <div class="p-6 rounded-2xl glass">
+            <h3 class="font-semibold mb-3">Fields</h3>
+            <ul class="space-y-4">
+              <li>
+                <div class="flex justify-between text-sm text-slate-300"><span>Numerical Analysis</span><span>80%</span></div>
+                <div class="w-full mt-2 bg-slate-700 rounded-xl h-2 overflow-hidden"><div class="skill-fill bg-pink-400" data-fill="0.8"></div></div>
+              </li>
+              <li>
+                <div class="flex justify-between text-sm text-slate-300"><span>Data Analysis</span><span>78%</span></div>
+                <div class="w-full mt-2 bg-slate-700 rounded-xl h-2 overflow-hidden"><div class="skill-fill bg-sky-400" data-fill="0.78"></div></div>
+              </li>
+              <li>
+                <div class="flex justify-between text-sm text-slate-300"><span>Machine Learning Basics</span><span>60%</span></div>
+                <div class="w-full mt-2 bg-slate-700 rounded-xl h-2 overflow-hidden"><div class="skill-fill bg-indigo-400" data-fill="0.6"></div></div>
+              </li>
+              <li>
+                <div class="flex justify-between text-sm text-slate-300"><span>Mathematical Modeling</span><span>82%</span></div>
+                <div class="w-full mt-2 bg-slate-700 rounded-xl h-2 overflow-hidden"><div class="skill-fill bg-emerald-400" data-fill="0.82"></div></div>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CONTACT -->
+    <section id="contact" class="py-20 bg-gradient-to-t from-black/10 to-transparent">
+      <div class="max-w-5xl mx-auto px-6">
+        <div class="p-6 rounded-2xl glass grid md:grid-cols-2 gap-6">
+          <div>
+            <h3 class="text-2xl font-bold">Get in touch</h3>
+            <p class="text-slate-300">Email saya di <a href="mailto:dufaalwan@gmail.com" class="text-sky-400">dufaalwan@gmail.com</a> atau isi form kecil ini.</p>
+
+            <!-- simple contact form (works if you attach form handler later) -->
+            <form id="contactForm" class="mt-6 space-y-4">
+              <div><input required name="name" class="w-full p-3 rounded-lg bg-transparent border border-slate-700" placeholder="Your name" /></div>
+              <div><input required name="email" class="w-full p-3 rounded-lg bg-transparent border border-slate-700" placeholder="Your email" /></div>
+              <div><textarea required name="message" rows="4" class="w-full p-3 rounded-lg bg-transparent border border-slate-700" placeholder="Message"></textarea></div>
+              <div><button type="submit" class="px-5 py-3 rounded-full bg-sky-600 hover:bg-sky-700 text-white">Send message</button></div>
+            </form>
+          </div>
+
+          <div>
+            <h4 class="text-sm text-slate-300 font-semibold">Social</h4>
+            <ul class="mt-4 space-y-3 text-slate-300">
+              <li><a href="https://instagram.com/dufaaa_" target="_blank" class="hover:text-white">Instagram — @dufaaa_</a></li>
+              <li><a href="https://www.linkedin.com/in/dufa-alwan-farras-b67447278/" target="_blank" class="hover:text-white">LinkedIn — dufa alwan farras</a></li>
+              <li><a href="mailto:dufaalwan@gmail.com" class="hover:text-white">Email — dufaalwan@gmail.com</a></li>
+              <li><a href="https://github.com/all-for-wan" target="_blank" class="hover:text-white">GitHub — all-for-wan</a></li>
+            </ul>
+
+            <div class="mt-8">
+              <h5 class="text-sm text-slate-300 font-semibold">Location</h5>
+              <p class="text-slate-400 mt-2">Indonesia</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <footer class="py-8 text-center text-slate-400">
+      © <span id="year"></span> Dufa Alwan Farras — Built with ♥
+    </footer>
+  </main>
+
+  <!-- SCRIPT -->
+  <script>
+    /* ---------- theme toggle (dark/light) ---------- */
+    (function(){
+      const root = document.documentElement;
+      const btn = document.getElementById('themeToggle');
+      const stored = localStorage.getItem('theme');
+      if(stored === 'light') {
+        root.classList.add('light');
+      }
+      btn.addEventListener('click', () => {
+        if(root.classList.contains('light')) {
+          root.classList.remove('light'); localStorage.setItem('theme', 'dark');
+        } else {
+          root.classList.add('light'); localStorage.setItem('theme', 'light');
+        }
+      });
+    })();
+
+    /* ---------- typing effect for tagline (simple) ---------- */
+    (function(){
+      const textEl = document.getElementById('typingText');
+      const cursor = document.getElementById('typingCursor');
+      const text = textEl.textContent.trim();
+      textEl.textContent = '';
+      let i = 0;
+      function step(){
+        if(i <= text.length){
+          textEl.textContent = text.slice(0,i);
+          i++;
+          setTimeout(step, 24);
+        } else {
+          // keep cursor blinking
+          cursor.style.display = 'inline-block';
+        }
+      }
+      step();
+    })();
+
+    /* ---------- reveal on scroll ---------- */
+    (function(){
+      const reveals = document.querySelectorAll('[data-reveal]');
+      const obs = new IntersectionObserver(entries => {
+        for(const e of entries){
+          if(e.isIntersecting) e.target.classList.add('show');
+        }
+      }, {threshold: 0.12});
+      reveals.forEach(r => obs.observe(r));
+      // also reveal initial elements
+      document.querySelectorAll('.reveal').forEach(el=>{
+        if(el.getBoundingClientRect().top < window.innerHeight) el.classList.add('show');
+      });
+    })();
+
+    /* ---------- project card tilt (mouse) ---------- */
+    (function(){
+      const cards = document.querySelectorAll('.tilt');
+      cards.forEach(card=>{
+        card.addEventListener('mousemove', (ev)=>{
+          const rect = card.getBoundingClientRect();
+          const x = ev.clientX - rect.left;
+          const y = ev.clientY - rect.top;
+          const px = (x / rect.width) - 0.5;
+          const py = (y / rect.height) - 0.5;
+          const rx = (-py) * 6;
+          const ry = (px) * 8;
+          card.style.transform = `perspective(800px) rotateX(${rx}deg) rotateY(${ry}deg) translateZ(6px)`;
+        });
+        card.addEventListener('mouseleave', ()=> {
+          card.style.transform = '';
+        });
+      });
+    })();
+
+    /* ---------- skills animate when visible ---------- */
+    (function(){
+      const fills = document.querySelectorAll('.skill-fill');
+      const obs = new IntersectionObserver(entries=>{
+        for(const e of entries){
+          if(e.isIntersecting){
+            const el = e.target;
+            const val = parseFloat(el.getAttribute('data-fill')) || 0.6;
+            el.style.transform = 'scaleX(' + val + ')';
+            obs.unobserve(el);
+          }
+        }
+      }, {threshold:0.25});
+      fills.forEach(f => obs.observe(f));
+    })();
+
+    /* ---------- navbar hide on scroll ---------- */
+    (function(){
+      let last = window.scrollY;
+      const header = document.getElementById('site-header');
+      window.addEventListener('scroll', ()=>{
+        const y = window.scrollY;
+        if(y > last && y > 80) header.classList.add('nav-hidden'); else header.classList.remove('nav-hidden');
+        last = y;
+      });
+    })();
+
+    /* ---------- contact form (simple client-side demo) ---------- */
+    (function(){
+      const f = document.getElementById('contactForm');
+      f.addEventListener('submit', (ev)=>{
+        ev.preventDefault();
+        alert('Terima kasih! Pesan akan dikirim (aktifkan form handler di backend/kontak).');
+        f.reset();
+      });
+    })();
+
+    /* ---------- small extras ---------- */
+    document.getElementById('year').textContent = new Date().getFullYear();
+
+    /* ---------- helper: replace placeholder profile with image if present ---------- */
+    (function(){
+      // If you add a file named "profile.jpg" or "profile.png" in repo root, it will display automatically.
+      const possible = ['profile.jpg','profile.png'];
+      const wrap = document.getElementById('profilePic');
+      function tryImg(name){
+        const img = new Image();
+        img.src = name;
+        img.onload = () => {
+          img.className = 'w-[140px] h-[140px] rounded-full object-cover shadow-xl';
+          wrap.innerHTML = '';
+          wrap.appendChild(img);
+        };
+      }
+      possible.forEach(p => {
+        // quick existence check by fetching the resource
+        fetch(p, { method: 'HEAD' }).then(res => {
+          if(res && res.ok) tryImg(p);
+        }).catch(()=>{/* no file */});
+      });
+    })();
+  </script>
+</body>
+</html>
